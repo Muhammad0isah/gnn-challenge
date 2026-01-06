@@ -16,8 +16,8 @@ Predict research topics of academic papers in the Cora citation network. Node cl
 |------|-------------|
 | data/nodes.csv | Node features (node_id + 1433 features) |
 | data/edges.csv | Edge list (source, target) |
-| data/train.csv | Training labels (node_id, label) |
-| data/test.csv | Test node IDs |
+| data/train.csv | Training data (node_id, features, target) |
+| data/test.csv | Test data (node_id, features) |
 | submissions/sample_submission.csv | Submission format example |
 
 ## Evaluation
@@ -35,12 +35,15 @@ Macro F1-Score - treats all 7 classes equally.
 ```
 gnn-challenge/
 ├── data/
+│   ├── nodes.csv
+│   ├── edges.csv
 │   ├── train.csv
 │   └── test.csv
 ├── submissions/
 │   └── sample_submission.csv
 ├── starter_code/
 │   ├── baseline.py
+│   ├── prepare_data.py
 │   └── requirements.txt
 ├── README.md
 ├── scoring_script.py
@@ -53,7 +56,8 @@ gnn-challenge/
 ```bash
 pip install -r starter_code/requirements.txt
 cd starter_code
-python baseline.py
+python prepare_data.py  # Downloads Cora and creates train/test split
+python baseline.py      # Trains GCN and generates submission
 ```
 
 ## Submission Format
